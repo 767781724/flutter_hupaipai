@@ -38,17 +38,17 @@ class NetUtils {
       baseUrl: Constants.baseUrl,
       connectTimeout: 10000,
       receiveTimeout: 10000,
-      contentType: ContentType.json,
+      contentType: Headers.formUrlEncodedContentType
     );
     _dio = new Dio(options);
     _dio.interceptors.add(InterceptorsWrapper(onError: (DioError e) {
       if (e.response == null) e.response = Response();
       if (e.message.startsWith("SocketException")) {
-        e.message = "网络连接异常，请检查您的网络状态";
+        e.error = "网络连接异常，请检查您的网络状态";
       } else if (e.message.startsWith("Http status error [404]")) {
-        e.message = "没有找到服务器";
+        e.error = "没有找到服务器";
       } else if (e.message.startsWith("Connecting timeout")) {
-        e.message = "网络不稳定，请求超时";
+        e.error = "网络不稳定，请求超时";
       }
       return e; //continue
     }));
@@ -82,9 +82,9 @@ class NetUtils {
       if (HttpStatus.ok == baseResp.code) {
         return baseResp;
       }
-      throw DioError(response: Response(statusCode: baseResp.code), message: baseResp.msg, type: DioErrorType.RESPONSE);
+      throw DioError(response: Response(statusCode: baseResp.code), error: baseResp.msg, type: DioErrorType.RESPONSE);
     }
-    throw DioError(response: Response(statusCode: -1), message: "未知错误", type: DioErrorType.RESPONSE);
+    throw DioError(response: Response(statusCode: -1), error: "未知错误", type: DioErrorType.RESPONSE);
   }
 
   printLog() {
@@ -102,7 +102,7 @@ class NetUtils {
       log("\n================== 错误响应数据 ======================");
       log("type = ${e.type}");
       log("message = ${e.message}");
-      log("stackTrace = ${e.stackTrace}");
+      log("stackTrace = ${e.toString()}");
       log("\n");
     }));
   }
