@@ -10,7 +10,7 @@ class MyDialog extends Dialog with ScreenUtil{
         child: Container(
           color: Colors.white,
           width: setW(330),
-          height: setW(370),
+          height: setW(380),
           padding: EdgeInsets.all(setW(17)),
           child: Column(
             children: <Widget>[

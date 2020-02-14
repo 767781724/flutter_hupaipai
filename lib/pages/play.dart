@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:hupaipai/http/web_socket.dart';
 import 'package:hupaipai/utils/screen_util.dart';
+import 'package:provider/provider.dart';
 
 class PlayPage extends StatefulWidget {
   @override
@@ -13,6 +17,15 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
   TextEditingController _controller = TextEditingController();
   AnimationController _anicontroller;
   Animation _animation;
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+  }
+
+  @override
   Widget _ColBox(int type) {
     TextStyle _style = TextStyle(fontSize: setSp(14), color: Color(0xff999999));
     switch (type) {

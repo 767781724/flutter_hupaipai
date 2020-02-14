@@ -1,12 +1,30 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:hupaipai/http/service_api.dart';
 import 'package:hupaipai/route/app_router.dart';
 import 'package:hupaipai/utils/screen_util.dart';
+import 'package:fluwx/fluwx.dart' as fluwx;
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> with ScreenUtil {
+
+
+  @override
+  void initState() {
+    super.initState();
+    fluwx.responseFromAuth.listen((data) {
+      ServiceApi().getWxLogin(data.code).then((value){log(value);
+        AppRouter.navigateTo(context, Routes.homePage,replace: true);
+      }).catchError((err){
+        log(err);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +54,13 @@ class _LoginPageState extends State<LoginPage> with ScreenUtil {
               ],
             ),
             onPressed: (){
-              AppRouter.navigateTo(context, Routes.homePage,replace: true);
+              fluwx.sendWeChatAuth(scope: "snsapi_userinfo",state: "wx_login_hupaipai").then((val){
+                if(!val){
+                  print(val);
+                }
+
+              });
+
             },
           ),
         )

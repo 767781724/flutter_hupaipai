@@ -30,12 +30,26 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
 
     ScreenUtil.instance = ScreenUtil(width: 375, height: 812)..init(context);
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.white,
-      alignment: Alignment.center,
-      child: Text('启动页',style: TextStyle(color: Colors.black,decoration: TextDecoration.none),),
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.white,
+        alignment: Alignment.bottomCenter,
+        padding: EdgeInsets.only(bottom: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Image.asset('assets/images/logo.png',width: 50,fit: BoxFit.fitWidth,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('智慧云拍牌',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+            ),
+            Text('一个专业高效便捷的沪牌拍牌平台',style: TextStyle(fontSize: 12,color: Colors.black38),)
+          ],
+        ),
+      ),
     );
   }
 }

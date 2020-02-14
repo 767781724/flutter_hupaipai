@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:hupaipai/http/web_socket.dart';
+import 'package:hupaipai/models/base_socket_resp.dart';
+import 'package:hupaipai/provides/ws_provide.dart';
 import 'package:hupaipai/route/app_router.dart';
 import 'package:hupaipai/utils/screen_util.dart';
 import 'package:hupaipai/widgets/my_card.dart';
-
+import 'package:provider/provider.dart';
 import 'my_dialog.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +15,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with ScreenUtil {
+  Socket _socket;
+  @override
+  void initState() {
+    super.initState();
+    //页面初始化完成 链接socket
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<Socket>(context).connect();
+      _socket = Provider.of<Socket>(context, listen: false);
+
+      _socket?.on(WebSocketCmd.wsAll, infoListListener);
+    });
+
+  }
+  infoListListener(data){
+    WsBloc ws=Provider.of<WsBloc>(context);
+    ws.pushInfo(data);
+  }
+  @override
   Widget _tabBox(String path, String name, GestureTapCallback _onTap, [Color colors]) {
     final _style = TextStyle(color: Colors.white, fontSize: setSp(15));
     return InkWell(
@@ -34,6 +55,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
       ),
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +111,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                   tactics: '比较激进策略',
                   id: '320182028948048411',
                   btn: SizedBox(
-                    width: setW(85),
+                    width: setW(90),
                     height: setW(34),
                     child: FlatButton(
                       child: Text('预约拍牌',

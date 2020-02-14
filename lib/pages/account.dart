@@ -49,17 +49,20 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
                 ),
                 title: Align(
                   alignment: Alignment.centerRight,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(setW(24))),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.fitWidth,
-                      imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
-                      placeholder: (context, url) => Image.asset(
-                        'assets/images/img_loading.png',
+                  child: SizedBox(
+                    width: setW(48),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(setW(24))),
+                      child: CachedNetworkImage(
                         fit: BoxFit.fitWidth,
+                        imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
+                        placeholder: (context, url) => Image.asset(
+                          'assets/images/img_loading.png',
+                          fit: BoxFit.fitWidth,
+                        ),
+                        width: setW(48),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
-                      width: setW(48),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                 ),

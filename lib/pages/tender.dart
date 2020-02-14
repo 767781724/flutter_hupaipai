@@ -24,7 +24,7 @@ class _TenderPageState extends State<TenderPage> with ScreenUtil{
               tactics: '比较激进策略',
               id:'3020203802811918',
               btn: SizedBox(
-                width: setW(85),
+                width: setW(90),
                 height: setW(34),
                 child: FlatButton(
                   child: Text('设为默认',
