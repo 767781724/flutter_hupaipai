@@ -37,8 +37,8 @@ class _LoginPageState extends State<LoginPage> with ScreenUtil {
         height: double.infinity,
         alignment: Alignment.center,
         child:SizedBox(
-          width: setW(327),
-          height: setW(42),
+          width: setWidth(327),
+          height: setWidth(42),
           child: OutlineButton(
             disabledBorderColor: Color(0xff0AC161),
             highlightedBorderColor:Color(0xff0AC161),
@@ -49,17 +49,18 @@ class _LoginPageState extends State<LoginPage> with ScreenUtil {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset('assets/images/login-weixin.png',width: setW(30),fit: BoxFit.fitWidth,),
+                Image.asset('assets/images/login-weixin.png',width: setWidth(30),fit: BoxFit.fitWidth,),
                 Text('微信登录',style: TextStyle(color: Color(0xff0AC161),fontSize: setSp(18),fontWeight: FontWeight.w400))
               ],
             ),
             onPressed: (){
-              fluwx.sendWeChatAuth(scope: "snsapi_userinfo",state: "wx_login_hupaipai").then((val){
-                if(!val){
-                  print(val);
-                }
-
-              });
+              AppRouter.navigateTo(context, Routes.homePage,replace: true);
+//              fluwx.sendWeChatAuth(scope: "snsapi_userinfo",state: "wx_login_hupaipai").then((val){
+//                if(!val){
+//                  print(val);
+//                }
+//
+//              });
 
             },
           ),

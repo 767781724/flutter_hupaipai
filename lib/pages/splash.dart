@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hupaipai/route/app_router.dart';
+import 'package:hupaipai/utils/screen_util.dart';
 
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with ScreenUtil {
   Timer _timer;
   @override
   void initState() {
@@ -28,8 +28,7 @@ class _SplashPageState extends State<SplashPage> {
   }
   @override
   Widget build(BuildContext context) {
-
-    ScreenUtil.instance = ScreenUtil(width: 375, height: 812)..init(context);
+    initScreenUtil(context, width: 375, height: 812);
     return Scaffold(
       body: Container(
         width: double.infinity,

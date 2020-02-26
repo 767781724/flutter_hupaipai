@@ -66,7 +66,7 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top: setW(15), bottom: setW(15)),
+          padding: EdgeInsets.only(top: setWidth(15), bottom: setWidth(15)),
           child: Text(
             index==0?'方式A':'方式B',
             style: TextStyle(fontSize: setSp(16), color: Color(0xff333333), fontWeight: FontWeight.bold),
@@ -131,13 +131,13 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
             setState(() {datas[index]['type']=0;});
           },
           trailing: CircleAvatar(
-            radius: setW(10),
+            radius: setWidth(10),
             backgroundColor: Color(0xFF1CCAD6),
             child: CircleAvatar(
-              radius: setW(9),
+              radius: setWidth(9),
               backgroundColor: Colors.white,
               child: CircleAvatar(
-                radius: setW(5),
+                radius: setWidth(5),
                 backgroundColor: datas[index]['type']==0?Color(0xFF1CCAD6):Colors.white,
               ),
             ),
@@ -159,13 +159,13 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
             setState(() {datas[index]['type']=1;});
           },
           trailing:  CircleAvatar(
-            radius: setW(10),
+            radius: setWidth(10),
             backgroundColor: Color(0xFF1CCAD6),
             child: CircleAvatar(
-              radius: setW(9),
+              radius: setWidth(9),
               backgroundColor: Colors.white,
               child: CircleAvatar(
-                radius: setW(5),
+                radius: setWidth(5),
                 backgroundColor: datas[index]['type']==1?Color(0xFF1CCAD6):Colors.white,
               ),
             ),
@@ -186,7 +186,7 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
           behavior: HitTestBehavior.translucent,
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Padding(
-            padding: EdgeInsets.all(setW(15)),
+            padding: EdgeInsets.all(setWidth(15)),
             child: Column(
               children: <Widget>[
                 name(),
@@ -199,9 +199,9 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
       ),
       persistentFooterButtons: <Widget>[
         Container(
-          width: setW(327),
-          height: setW(42),
-          margin: EdgeInsets.only(right: setW(15)),
+          width: setWidth(327),
+          height: setWidth(42),
+          margin: EdgeInsets.only(right: setWidth(15)),
           child: FlatButton(
               color: Color(0xFF1CCAD6),
               highlightColor: Color(0xFF1CCAD6),

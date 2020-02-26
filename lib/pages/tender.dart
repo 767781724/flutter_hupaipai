@@ -15,7 +15,7 @@ class _TenderPageState extends State<TenderPage> with ScreenUtil{
         AppRouter.navigateTo(context, Routes.tenderSettingPage);
       },
       child: Padding(
-        padding:  EdgeInsets.only(left: setW(15),right: setW(15)),
+        padding:  EdgeInsets.only(left: setWidth(15),right: setWidth(15)),
         child: Column(
           children: <Widget>[
             MyCard(
@@ -24,8 +24,8 @@ class _TenderPageState extends State<TenderPage> with ScreenUtil{
               tactics: '比较激进策略',
               id:'3020203802811918',
               btn: SizedBox(
-                width: setW(90),
-                height: setW(34),
+                width: setWidth(90),
+                height: setWidth(34),
                 child: FlatButton(
                   child: Text('设为默认',
                       style: TextStyle(color: Color(0xff1CCAD6), fontWeight: FontWeight.w400, fontSize: setSp(13))),
@@ -39,14 +39,14 @@ class _TenderPageState extends State<TenderPage> with ScreenUtil{
                 ),
               )),
             Padding(
-              padding: EdgeInsets.only(top: setW(15)),
+              padding: EdgeInsets.only(top: setWidth(15)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Container(
-                    width: setW(80),
-                    height: setW(30),
-                    margin: EdgeInsets.only(right: setW(30)),
+                    width: setWidth(80),
+                    height: setWidth(30),
+                    margin: EdgeInsets.only(right: setWidth(30)),
                     child: OutlineButton(
                       onPressed: (){},
                       padding: EdgeInsets.all(0),
@@ -59,8 +59,8 @@ class _TenderPageState extends State<TenderPage> with ScreenUtil{
                     ),
                   ),
                   SizedBox(
-                    width: setW(80),
-                    height: setW(30),
+                    width: setWidth(80),
+                    height: setWidth(30),
                     child: OutlineButton(
                       onPressed: (){},
                       padding: EdgeInsets.all(0),

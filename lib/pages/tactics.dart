@@ -14,22 +14,22 @@ class _TacticsPageState extends State<TacticsPage> with ScreenUtil{
   Widget _ListBox(){
     final fontStyle=TextStyle(fontSize: setSp(12),color: Color(0xff333333));
     return Container(
-      padding: EdgeInsets.all(setW(15)),
+      padding: EdgeInsets.all(setWidth(15)),
       child: Column(
         children:<Widget>[
           Padding(
-            padding: EdgeInsets.only(bottom: setW(14)),
+            padding: EdgeInsets.only(bottom: setWidth(14)),
             child: Row(
               children: <Widget>[
                 Container(
-                  width: setW(85),
-                  height: setW(85),
-                  margin: EdgeInsets.only(right: setW(20)),
+                  width: setWidth(85),
+                  height: setWidth(85),
+                  margin: EdgeInsets.only(right: setWidth(20)),
                   child: Image.asset('assets/images/tatics-icon1.png',fit: BoxFit.fitWidth,),
                 ),
                 Expanded(
                     child: SizedBox(
-                      height: setW(85),
+                      height: setWidth(85),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,14 +60,14 @@ class _TacticsPageState extends State<TacticsPage> with ScreenUtil{
           ),
           Divider(),
           Padding(
-            padding: EdgeInsets.only(top: setW(14)),
+            padding: EdgeInsets.only(top: setWidth(14)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  width: setW(80),
-                  height: setW(30),
-                  margin: EdgeInsets.only(right: setW(30)),
+                  width: setWidth(80),
+                  height: setWidth(30),
+                  margin: EdgeInsets.only(right: setWidth(30)),
                   child: OutlineButton(
                     onPressed: (){},
                     padding: EdgeInsets.all(0),
@@ -80,8 +80,8 @@ class _TacticsPageState extends State<TacticsPage> with ScreenUtil{
                   ),
                 ),
                 SizedBox(
-                  width: setW(80),
-                  height: setW(30),
+                  width: setWidth(80),
+                  height: setWidth(30),
                   child: OutlineButton(
                     onPressed: (){},
                     padding: EdgeInsets.all(0),
@@ -119,7 +119,7 @@ class _TacticsPageState extends State<TacticsPage> with ScreenUtil{
         },
         child: Icon(
           Icons.add,
-          size: setW(30),
+          size: setWidth(30),
         ),
       ),
     );

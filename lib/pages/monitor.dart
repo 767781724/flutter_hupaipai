@@ -51,7 +51,7 @@ class _MonitorPageState extends State<MonitorPage> with ScreenUtil{
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(setW(15)),
+          padding: EdgeInsets.all(setWidth(15)),
           child: Column(
             children: <Widget>[
               Row(
@@ -62,11 +62,11 @@ class _MonitorPageState extends State<MonitorPage> with ScreenUtil{
                 ]
               ),
               Container(
-                width: setW(345),
-                height: setW(311),
-                margin: EdgeInsets.only(top: setW(10)),
+                width: setWidth(345),
+                height: setWidth(311),
+                margin: EdgeInsets.only(top: setWidth(10)),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(setW(10)),
+                  borderRadius: BorderRadius.circular(setWidth(10)),
                   child: CachedNetworkImage(
                     fit: BoxFit.fitWidth,
                     imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
@@ -79,14 +79,14 @@ class _MonitorPageState extends State<MonitorPage> with ScreenUtil{
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: setW(10)),
+                margin: EdgeInsets.only(top: setWidth(10)),
                 alignment: Alignment.centerLeft,
                   child: Text('投标操作视频', style: TextStyle(fontSize: setSp(22), fontWeight: FontWeight.bold))
               ),
               Container(
-                margin: EdgeInsets.only(top: setW(10)),
+                margin: EdgeInsets.only(top: setWidth(10)),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(setW(10)),
+                  borderRadius: BorderRadius.circular(setWidth(10)),
                   child: Chewie(
                     controller: _chewieController,
                   ),

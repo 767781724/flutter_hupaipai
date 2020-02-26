@@ -9,9 +9,9 @@ class MyDialog extends Dialog with ScreenUtil{
       child: Center(
         child: Container(
           color: Colors.white,
-          width: setW(330),
-          height: setW(380),
-          padding: EdgeInsets.all(setW(17)),
+          width: setWidth(330),
+          height: setWidth(380),
+          padding: EdgeInsets.all(setWidth(17)),
           child: Column(
             children: <Widget>[
               Align(
@@ -24,30 +24,30 @@ class MyDialog extends Dialog with ScreenUtil{
                 )
               ),
               Container(
-                width: setW(110),
-                height: setW(110),
+                width: setWidth(110),
+                height: setWidth(110),
                 decoration: BoxDecoration(
                   color: Color(0xFF1CCAD6),
-                  borderRadius: BorderRadius.all(Radius.circular(setW(55))),
+                  borderRadius: BorderRadius.all(Radius.circular(setWidth(55))),
                 ),
-                child: Image.asset('assets/images/home-alert.png',width: setW(110),fit: BoxFit.fitWidth,),
+                child: Image.asset('assets/images/home-alert.png',width: setWidth(110),fit: BoxFit.fitWidth,),
               ),
               Padding(
-                padding: EdgeInsets.only(top: setW(20)),
+                padding: EdgeInsets.only(top: setWidth(20)),
                 child: Text('2019年9月21日, 拍牌预约',style: TextStyle(fontSize: setSp(18),color: Color(0xff333333))),
               ),
               Padding(
-                padding: EdgeInsets.only(top: setW(16)),
+                padding: EdgeInsets.only(top: setWidth(16)),
                 child: Text('支付10元',style: TextStyle(fontSize: setSp(18),color: Color(0xff333333))),
               ),
               Container(
-                margin: EdgeInsets.only(top: setW(30)),
+                margin: EdgeInsets.only(top: setWidth(30)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     SizedBox(
-                      width: setW(197),
-                      height: setW(40),
+                      width: setWidth(197),
+                      height: setWidth(40),
                       child: FlatButton(
                           color: Color(0xFF1CCAD6),
                           highlightColor: Color(0xFF1CCAD6),
@@ -57,8 +57,8 @@ class MyDialog extends Dialog with ScreenUtil{
                         child: Text('分享立减7元',style: TextStyle(fontSize: setSp(15),color: Colors.white),)),
                     ),
                     SizedBox(
-                      width: setW(84),
-                      height: setW(40),
+                      width: setWidth(84),
+                      height: setWidth(40),
                       child: OutlineButton(
                         padding: EdgeInsets.all(0),
                         highlightedBorderColor: Color(0xFF1CCAD6),
@@ -73,7 +73,7 @@ class MyDialog extends Dialog with ScreenUtil{
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: setW(28)),
+                padding: EdgeInsets.only(top: setWidth(28)),
                 child: Text('预约服务费一经售出不支持退款',style: TextStyle(color: Color(0xff999999),fontSize: setSp(12)),),
               )
             ],

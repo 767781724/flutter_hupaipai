@@ -38,15 +38,15 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
     return InkWell(
       onTap: _onTap,
       child: Container(
-        width: setW(80),
-        height: setW(60),
+        width: setWidth(80),
+        height: setWidth(60),
         child: Column(
           children: <Widget>[
             Padding(
-                padding: EdgeInsets.only(bottom: setW(12)),
+                padding: EdgeInsets.only(bottom: setWidth(12)),
                 child: Image.asset(
                   'assets/images/${path}.png',
-                  width: setW(30),
+                  width: setWidth(30),
                   fit: BoxFit.fitWidth,
                 )),
             Text(name, style: TextStyle(color: Color(0xff333333), fontSize: setSp(12)))
@@ -65,22 +65,22 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(left: setW(16), right: setW(16)),
+            padding: EdgeInsets.only(left: setWidth(16), right: setWidth(16)),
             child: Column(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: setW(16)),
+                  margin: EdgeInsets.only(top: setWidth(16)),
                   child: ListTile(
                     onTap: (){
                       AppRouter.navigateTo(context, Routes.accountPage);
                     },
                     contentPadding: EdgeInsets.all(0),
                     leading:  SizedBox(
-                      width: setW(48),
+                      width: setWidth(48),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(setW(24))),
+                        borderRadius: BorderRadius.all(Radius.circular(setWidth(24))),
                         child: CachedNetworkImage(
-                          width: setW(48),
+                          width: setWidth(48),
                           fit: BoxFit.fitWidth,
                           imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
                           placeholder: (context, url) => Image.asset(
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                         )
                       ],
                     ),
-                    trailing: Image.asset('assets/images/home-icon0.png',width: setW(25),fit: BoxFit.fitWidth,),
+                    trailing: Image.asset('assets/images/home-icon0.png',width: setWidth(25),fit: BoxFit.fitWidth,),
                   ),
                 ),
                 MyCard(
@@ -111,8 +111,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                   tactics: '比较激进策略',
                   id: '320182028948048411',
                   btn: SizedBox(
-                    width: setW(90),
-                    height: setW(34),
+                    width: setWidth(90),
+                    height: setWidth(34),
                     child: FlatButton(
                       child: Text('预约拍牌',
                           style: TextStyle(color: Color(0xff1CCAD6), fontWeight: FontWeight.w400, fontSize: setSp(13))),
@@ -134,9 +134,9 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: setW(25)),
+                  margin: EdgeInsets.only(top: setWidth(25)),
                   child: Wrap(
-                    spacing: setW(5), // 主轴(水平)方向间距
+                    spacing: setWidth(5), // 主轴(水平)方向间距
                     runSpacing: 0,
                     children: <Widget>[
                       _tabBox('home-icon1', '实时监控', () {
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: setW(30)),
+                    margin: EdgeInsets.only(top: setWidth(30)),
                     alignment: Alignment.centerLeft,
                     child: Text('快报', style: TextStyle(fontSize: setSp(22), fontWeight: FontWeight.bold))),
                 Container(
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                     children: <Widget>[
                       Expanded(
                           child: SizedBox(
-                        height: setW(58),
+                        height: setWidth(58),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -181,17 +181,17 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                         ),
                       )),
                       Container(
-                        width: setW(94),
-                        height: setW(68),
+                        width: setWidth(94),
+                        height: setWidth(68),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(setW(8)),
+                          borderRadius: BorderRadius.circular(setWidth(8)),
                           child: CachedNetworkImage(
                             fit: BoxFit.fitWidth,
                             imageUrl:
                                 "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
                             placeholder: (context, url) => Image.asset(
                             'assets/images/img_loading.png',
-                            width: setW(94),
+                            width: setWidth(94),
                             fit: BoxFit.fitWidth,
                             ),
                             errorWidget: (context, url, error) => Icon(Icons.error),
@@ -202,14 +202,14 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: setW(30)),
+                    margin: EdgeInsets.only(top: setWidth(30)),
                     alignment: Alignment.centerLeft,
                     child: Text('功能', style: TextStyle(fontSize: setSp(22), fontWeight: FontWeight.bold))),
                 Container(
-                  margin: EdgeInsets.only(top: setW(25),bottom: setW(30)),
+                  margin: EdgeInsets.only(top: setWidth(25),bottom: setWidth(30)),
                   child: Wrap(
-                    spacing: setW(5), // 主轴(水平)方向间距
-                    runSpacing: setW(8),
+                    spacing: setWidth(5), // 主轴(水平)方向间距
+                    runSpacing: setWidth(8),
                     alignment: WrapAlignment.center,
                     children: <Widget>[
                       _tabBox('home-icon12', '分享邀请', () {}, Color(0xff333333)),

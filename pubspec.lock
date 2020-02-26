@@ -30,7 +30,7 @@ packages:
     source: hosted
     version: "1.0.5"
   cached_network_image:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: cached_network_image
       url: "https://pub.flutter-io.cn"
@@ -44,7 +44,7 @@ packages:
     source: hosted
     version: "1.1.2"
   chewie:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: chewie
       url: "https://pub.flutter-io.cn"
@@ -79,21 +79,21 @@ packages:
     source: hosted
     version: "0.1.3"
   date_format:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: date_format
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.8"
   dio:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.8"
   fluro:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: fluro
       url: "https://pub.flutter-io.cn"
@@ -112,31 +112,36 @@ packages:
     source: hosted
     version: "1.1.3"
   flutter_datetime_picker:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_datetime_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.3.4"
   flutter_screenutil:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_screenutil
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.7.0"
+    version: "1.0.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   fluwx:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: fluwx
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.1+1"
+    version: "1.2.1+2"
   http:
     dependency: transitive
     description:
@@ -222,7 +227,7 @@ packages:
     source: hosted
     version: "2.2.1"
   provider:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.flutter-io.cn"
@@ -243,12 +248,19 @@ packages:
     source: hosted
     version: "0.0.5"
   shared_preferences:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: shared_preferences
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.5.4+8"
+    version: "0.5.6+2"
+  shared_preferences_macos:
+    dependency: transitive
+    description:
+      name: shared_preferences_macos
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.1+6"
   shared_preferences_platform_interface:
     dependency: transitive
     description:
@@ -256,6 +268,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.1"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.2+4"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -339,12 +358,12 @@ packages:
     source: hosted
     version: "2.0.8"
   video_player:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: video_player
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.10.4+1"
+    version: "0.10.8+1"
   video_player_platform_interface:
     dependency: transitive
     description:
@@ -352,6 +371,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.3"
+  video_player_web:
+    dependency: transitive
+    description:
+      name: video_player_web
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.2+1"
   xml:
     dependency: transitive
     description:
@@ -361,4 +387,4 @@ packages:
     version: "3.5.0"
 sdks:
   dart: ">=2.5.0 <3.0.0"
-  flutter: ">=1.12.1 <1.13.0"
+  flutter: ">=1.12.13+hotfix.4 <1.13.0"

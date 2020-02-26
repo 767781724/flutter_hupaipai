@@ -20,8 +20,8 @@ class MyCard extends StatelessWidget with ScreenUtil {
     final _style = TextStyle(color: Colors.white, fontSize: setSp(15));
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: setW(27)),
-      padding: EdgeInsets.all(setW(16)),
+      margin: EdgeInsets.only(top: setWidth(27)),
+      padding: EdgeInsets.all(setWidth(16)),
       decoration:
       BoxDecoration(color: Color(0xff1CCAD6), borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
@@ -41,12 +41,12 @@ class MyCard extends StatelessWidget with ScreenUtil {
               TableRow(children: [
                 TableCell(
                   child: Padding(
-                      padding: EdgeInsets.only(top: setW(20), bottom: setW(5)),
+                      padding: EdgeInsets.only(top: setWidth(20), bottom: setWidth(5)),
                       child: Text('标书密码', style: _style)),
                 ),
                 TableCell(
                   child: Padding(
-                      padding: EdgeInsets.only(top: setW(20), bottom: setW(5)),
+                      padding: EdgeInsets.only(top: setWidth(20), bottom: setWidth(5)),
                       child: Text('标书状态', style: _style)),
                 ),
               ]),
@@ -59,9 +59,9 @@ class MyCard extends StatelessWidget with ScreenUtil {
                     children: <Widget>[
                       Text(this.status, style: _style),
                       Container(
-                        width: setW(40),
-                        height: setW(18),
-                        margin: EdgeInsets.only(left: setW(20)),
+                        width: setWidth(40),
+                        height: setWidth(18),
+                        margin: EdgeInsets.only(left: setWidth(20)),
                         child: OutlineButton(
                           padding: EdgeInsets.all(0),
                           disabledBorderColor: Colors.white,
@@ -83,13 +83,13 @@ class MyCard extends StatelessWidget with ScreenUtil {
                 Container(
                   child: TableCell(
                     child: Padding(
-                        padding: EdgeInsets.only(top: setW(20), bottom: setW(5)),
+                        padding: EdgeInsets.only(top: setWidth(20), bottom: setWidth(5)),
                         child: Text('策略', style: _style)),
                   ),
                 ),
                 TableCell(
                   child: Padding(
-                      padding: EdgeInsets.only(top: setW(20), bottom: setW(5)),
+                      padding: EdgeInsets.only(top: setWidth(20), bottom: setWidth(5)),
                       child: Text('身份证号码', style: _style)),
                 ),
               ]),

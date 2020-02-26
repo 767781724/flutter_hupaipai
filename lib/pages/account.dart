@@ -17,7 +17,7 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
       title: Align(
         alignment: Alignment.centerRight,
         child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(setW(24))),
+            borderRadius: BorderRadius.all(Radius.circular(setWidth(24))),
             child: Text(
               title,
               style: TextStyle(fontSize: setSp(17), color: Color(0xff666666)),
@@ -25,7 +25,7 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
       ),
       trailing: Icon(
         Icons.arrow_forward_ios,
-        size: setW(13),
+        size: setWidth(13),
       ),
     );
   }
@@ -38,7 +38,7 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(setW(15)),
+          padding: EdgeInsets.all(setWidth(15)),
           child: Column(
             children: <Widget>[
               ListTile(
@@ -50,9 +50,9 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
                 title: Align(
                   alignment: Alignment.centerRight,
                   child: SizedBox(
-                    width: setW(48),
+                    width: setWidth(48),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(setW(24))),
+                      borderRadius: BorderRadius.all(Radius.circular(setWidth(24))),
                       child: CachedNetworkImage(
                         fit: BoxFit.fitWidth,
                         imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
@@ -60,7 +60,7 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
                           'assets/images/img_loading.png',
                           fit: BoxFit.fitWidth,
                         ),
-                        width: setW(48),
+                        width: setWidth(48),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
@@ -68,7 +68,7 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
                 ),
                 trailing: Icon(
                   Icons.arrow_forward_ios,
-                  size: setW(13),
+                  size: setWidth(13),
                 ),
               ),
               Divider(),

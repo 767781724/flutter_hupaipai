@@ -31,7 +31,7 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
     switch (type) {
       case 1:
         return Container(
-          margin: EdgeInsets.only(bottom: setW(15)),
+          margin: EdgeInsets.only(bottom: setWidth(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -40,10 +40,10 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
                 style: _style,
               ),
               Container(
-                margin: EdgeInsets.only(top: setW(5)),
+                margin: EdgeInsets.only(top: setWidth(5)),
                 child: CachedNetworkImage(
                   fit: BoxFit.fitWidth,
-                  width: setW(180),
+                  width: setWidth(180),
                   imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -55,7 +55,7 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
         break;
       case 2:
         return Container(
-          margin: EdgeInsets.only(bottom: setW(15)),
+          margin: EdgeInsets.only(bottom: setWidth(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
@@ -64,8 +64,8 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
                 style: _style,
               ),
               Container(
-                padding: EdgeInsets.all(setW(8)),
-                margin: EdgeInsets.only(top: setW(5)),
+                padding: EdgeInsets.all(setWidth(8)),
+                margin: EdgeInsets.only(top: setWidth(5)),
                 decoration: BoxDecoration(color: Color(0xFF1CCAD6), borderRadius: BorderRadius.all(Radius.circular(4))),
                 child: Text(
                   '80233',
@@ -78,7 +78,7 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
         break;
       case 3:
         return Container(
-          margin: EdgeInsets.only(bottom: setW(15)),
+          margin: EdgeInsets.only(bottom: setWidth(15)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -87,8 +87,8 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
                 style: _style,
               ),
               Container(
-                padding: EdgeInsets.all(setW(8)),
-                margin: EdgeInsets.only(top: setW(5)),
+                padding: EdgeInsets.all(setWidth(8)),
+                margin: EdgeInsets.only(top: setWidth(5)),
                 decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(4))),
                 child: Text(
                   '80233',
@@ -142,7 +142,7 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
               children: <Widget>[
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(setW(15)),
+                  padding: EdgeInsets.all(setWidth(15)),
                   color: Color(0xFFEDEDED),
                   height: screenHeightDp - statusBarHeight - bottomBarHeight - 100,
                   child: ListView.builder(
@@ -155,14 +155,14 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
                 ),
                 Container(
                   color: Color(0xFFF6F6F6),
-                  height: setW(52),
+                  height: setWidth(52),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        width: setW(260),
-                        height: setW(36),
-                        margin: EdgeInsets.only(right: setW(10)),
+                        width: setWidth(260),
+                        height: setWidth(36),
+                        margin: EdgeInsets.only(right: setWidth(10)),
                         decoration:
                             BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(4))),
                         child: TextField(
@@ -203,8 +203,8 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
                 child: FadeTransition(
                     opacity: _animation,
                     child: Container(
-                      width: setW(375),
-                      height: setW(52),
+                      width: setWidth(375),
+                      height: setWidth(52),
                       color: Colors.white,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -28,13 +28,13 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/muguchenzhong/Desktop/gits/hupaipai/android/cert.keystore')
+            storeFile file('../cert.keystore')
             storePassword 'hupaigx'
             keyAlias = 'hupaigx'
             keyPassword 'hupaigx'
         }
         release {
-            storeFile file('/Users/muguchenzhong/Desktop/gits/hupaipai/android/cert.keystore')
+            storeFile file('../cert.keystore')
             storePassword 'hupaigx'
             keyAlias = 'hupaigx'
             keyPassword 'hupaigx'

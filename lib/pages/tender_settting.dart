@@ -16,7 +16,7 @@ class _TenderSettingPageState extends State<TenderSettingPage> with ScreenUtil{
   Widget _Input(String lable,TextEditingController controller,String hint) {
     return Container(
       decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: Color(0xFFEAEAEA)))),
-      margin: EdgeInsets.only(bottom: setW(10)),
+      margin: EdgeInsets.only(bottom: setWidth(10)),
       child: Row(children: <Widget>[
         Text(lable, style: TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
         Expanded(
@@ -50,16 +50,16 @@ class _TenderSettingPageState extends State<TenderSettingPage> with ScreenUtil{
         title: Text('标书编辑'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(setW(15)),
+        padding: EdgeInsets.all(setWidth(15)),
         child: Column(
           children: <Widget>[
             _Input('标书编号', _code, '请输入标书编号'),
             _Input('标书密码', _password, '请输入标书密码'),
             _Input('身份证', _id, '请输入身份证号'),
             Container(
-              width: setW(327),
-              height: setW(42),
-              margin: EdgeInsets.only(top: setW(15)),
+              width: setWidth(327),
+              height: setWidth(42),
+              margin: EdgeInsets.only(top: setWidth(15)),
               child: FlatButton(
                   color: Color(0xFF1CCAD6),
                   highlightColor: Color(0xFF1CCAD6),
