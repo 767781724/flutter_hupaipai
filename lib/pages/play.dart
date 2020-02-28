@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:hupaipai/http/web_socket.dart';
 import 'package:hupaipai/utils/screen_util.dart';
-import 'package:provider/provider.dart';
+import 'package:hupaipai/utils/log_util.dart';
 
 class PlayPage extends StatefulWidget {
   @override
@@ -172,7 +169,7 @@ class _PlayPageState extends State<PlayPage> with ScreenUtil , TickerProviderSta
                           textInputAction: TextInputAction.done,
                           textAlign: TextAlign.start,
                           onSubmitted: (value) {
-                            print(value);
+                            LogUtil.i(value);
                           },
                           decoration: InputDecoration(
                             hintStyle:

@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:hupaipai/provides/ws_provide.dart';
-import 'package:provider/provider.dart';
 import 'package:hupaipai/http/constans.dart';
 import 'package:hupaipai/http/net_utils.dart';
 import 'package:hupaipai/models/base_socket_resp.dart';
+import 'package:hupaipai/utils/log_util.dart';
 
 typedef void SocketEventListener(dynamic data);
 
@@ -23,23 +22,23 @@ class Socket {
 
   void connect() {
     close(true);
-    print(Constants.wsUrl);
+    LogUtil.i(Constants.wsUrl);
     var connect = WebSocket.connect(Constants.wsUrl);
     connect.then((socket) {
-      print("Socket：连接成功");
+      LogUtil.i("Socket：连接成功");
       socket.pingInterval = Duration(seconds: 4);
       _webSocket = socket;
       bindToken();
       socket.listen((data) {
-        print("Socket：data:${data}");
+        LogUtil.i("Socket：data:${data}");
         var decode = json.decode(data);
         if (decode is Map) parseJson(decode);
       }, onDone: () {
         _reconnect();
-        print("Socket：done_closeCode:${socket.closeCode}");
+        LogUtil.i("Socket：done_closeCode:${socket.closeCode}");
       });
     }, onError: (e) {
-      print("Socket：onError:${e}");
+      LogUtil.i("Socket：onError:${e}");
     //  Toast.show(msg: "网络信号不稳定");
       _reconnect();
     });
@@ -62,7 +61,7 @@ class Socket {
 
         _webSocket.add(json.encode({'data':JsonEncoder().convert(params)}));
       } catch (e) {
-        print('Socket：send_e:${e}');
+        LogUtil.i('Socket：send_e:${e}');
       }
     }
   }
@@ -70,7 +69,7 @@ class Socket {
   void _reconnect() {
     if (_isReconnect) {
       Timer(Duration(seconds: 3), () {
-        print("Socket：开始重连");
+        LogUtil.i("Socket：开始重连");
         connect();
       });
     }
@@ -79,7 +78,7 @@ class Socket {
   void close([bool reconn = false]) {
     _isReconnect = reconn;
     if (_webSocket != null) {
-      print('Socket：close_readyState:${_webSocket.readyState}');
+      LogUtil.i('Socket：close_readyState:${_webSocket.readyState}');
       _webSocket.close();
     }
   }

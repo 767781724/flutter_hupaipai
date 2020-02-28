@@ -5,7 +5,8 @@ import 'package:hupaipai/route/app_router.dart';
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
-import 'provides/application_provide.dart';
+import 'package:hupaipai/provides/application_provide.dart';
+import 'package:hupaipai/utils/log_util.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   _initFluwx() async {
     await fluwx.registerWxApi(appId:"wx435f85136f4a8422",universalLink:'https://hupaipai.hupaigx.com/');
     var result = await fluwx.isWeChatInstalled();
-    print("wechat is installed: $result");
+    LogUtil.i("wechat is installed: $result");
   }
 
   @override

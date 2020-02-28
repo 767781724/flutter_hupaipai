@@ -1,10 +1,10 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:hupaipai/http/constans.dart';
 import 'dart:convert';
 
 import 'package:hupaipai/models/base_resp.dart';
+import 'package:hupaipai/utils/log_util.dart';
 
 /// 请求方法.
 class Method {
@@ -38,7 +38,7 @@ class NetUtils {
       baseUrl: Constants.baseUrl,
       connectTimeout: 10000,
       receiveTimeout: 10000,
-      contentType: Headers.formUrlEncodedContentType
+      contentType: Headers.jsonContentType
     );
     _dio = new Dio(options);
     _dio.interceptors.add(InterceptorsWrapper(onError: (DioError e) {
@@ -78,32 +78,32 @@ class NetUtils {
         cancelToken: cancelToken);
     if (response.data is Map) {
       BaseResp<T> baseResp = BaseResp.fromJson(response.data);
-      log('${baseResp}');
+      LogUtil.i('${baseResp}');
       if (HttpStatus.ok == baseResp.code) {
         return baseResp;
       }
-      throw DioError(response: Response(statusCode: baseResp.code), error: baseResp.msg, type: DioErrorType.RESPONSE);
+      throw DioError(response: Response(statusCode: baseResp.code), error: baseResp.message, type: DioErrorType.RESPONSE);
     }
     throw DioError(response: Response(statusCode: -1), error: "未知错误", type: DioErrorType.RESPONSE);
   }
 
   printLog() {
     _dio.interceptors.add(InterceptorsWrapper(onRequest: (RequestOptions options) {
-      log("\n================== 请求数据 ==========================");
-      log("url = ${options.uri.toString()}");
-      log("headers = ${options.headers}");
-      log("params = ${options.data}");
+      LogUtil.i("\n================== 请求数据 ==========================");
+      LogUtil.i("url = ${options.uri.toString()}");
+      LogUtil.i("headers = ${options.headers}");
+      LogUtil.i("params = ${options.data}");
     }, onResponse: (Response response) {
-      log("\n================== 响应数据 ==========================");
-      log("code = ${response.statusCode}");
-      log("data = ${json.encode(response.data)}");
-      log("\n");
+      LogUtil.i("\n================== 响应数据 ==========================");
+      LogUtil.i("code = ${response.statusCode}");
+      LogUtil.i("data = ${json.encode(response.data)}");
+      LogUtil.i("\n");
     }, onError: (DioError e) {
-      log("\n================== 错误响应数据 ======================");
-      log("type = ${e.type}");
-      log("message = ${e.message}");
-      log("stackTrace = ${e.toString()}");
-      log("\n");
+      LogUtil.i("\n================== 错误响应数据 ======================");
+      LogUtil.i("type = ${e.type}");
+      LogUtil.i("message = ${e.message}");
+      LogUtil.i("stackTrace = ${e.toString()}");
+      LogUtil.i("\n");
     }));
   }
 }

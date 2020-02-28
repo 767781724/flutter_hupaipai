@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hupaipai/http/web_socket.dart';
-import 'package:hupaipai/models/base_socket_resp.dart';
 import 'package:hupaipai/provides/ws_provide.dart';
 import 'package:hupaipai/route/app_router.dart';
 import 'package:hupaipai/utils/screen_util.dart';
 import 'package:hupaipai/widgets/my_card.dart';
 import 'package:provider/provider.dart';
-import 'my_dialog.dart';
+import 'package:hupaipai/pages/home/my_dialog.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -61,7 +60,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('首页')),
+        appBar: AppBar(title: Text('智慧云拍牌')),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(

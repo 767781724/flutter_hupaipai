@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hupaipai/utils/screen_util.dart';
+
 class AccountPage extends StatefulWidget {
   @override
   _AccountPageState createState() => _AccountPageState();

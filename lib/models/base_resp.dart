@@ -1,16 +1,14 @@
-import 'dart:developer';
-
 class BaseResp<T> {
   int code;
-  String msg;
+  String message;
   T data;
   Page page;
 
-  BaseResp({this.code, this.msg, this.data, this.page});
+  BaseResp({this.code, this.message, this.data, this.page});
 
   BaseResp.fromJson(Map<String, dynamic> json) {
     code = json["status"];
-    msg = json["msg"]??'';
+    message = json["msg"]??'';
     data = json["data"];
     if (json["page"] != null) {
       page = Page.fromJson(json["page"]);

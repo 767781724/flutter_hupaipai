@@ -1,6 +1,4 @@
-
-import 'dart:developer';
-
+import 'package:hupaipai/utils/log_util.dart';
 import 'net_utils.dart';
 
 class ServiceApi{
@@ -12,7 +10,7 @@ class ServiceApi{
 
   Future getWxLogin(String code) async {
     var request = await NetUtils().request("auth/wechat", data: {"code": code});
-    log('${request}');
+    LogUtil.i('${request}');
     return request;
   }
 }

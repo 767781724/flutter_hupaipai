@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:hupaipai/route/app_router.dart';

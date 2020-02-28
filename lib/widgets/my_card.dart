@@ -17,7 +17,7 @@ class MyCard extends StatelessWidget with ScreenUtil {
 
   @override
   Widget build(BuildContext context) {
-    final _style = TextStyle(color: Colors.white, fontSize: setSp(15));
+    final _style = TextStyle(color: Colors.white, fontSize: setSp(14));
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(top: setWidth(27)),
