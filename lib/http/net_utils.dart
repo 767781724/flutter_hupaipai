@@ -88,22 +88,19 @@ class NetUtils {
   }
 
   printLog() {
-    _dio.interceptors.add(InterceptorsWrapper(onRequest: (RequestOptions options) {
-      LogUtil.i("\n================== 请求数据 ==========================");
-      LogUtil.i("url = ${options.uri.toString()}");
-      LogUtil.i("headers = ${options.headers}");
-      LogUtil.i("params = ${options.data}");
+    _dio.interceptors
+        .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
+      LogUtil.i('================== 请求数据 ==========================\n'
+          'url = ${options.uri.toString()}\n'
+          'headers = ${options.headers}\n'
+          'params = ${options.data}');
     }, onResponse: (Response response) {
-      LogUtil.i("\n================== 响应数据 ==========================");
-      LogUtil.i("code = ${response.statusCode}");
-      LogUtil.i("data = ${json.encode(response.data)}");
-      LogUtil.i("\n");
+      LogUtil.i('================== 响应数据 ==========================\n'
+          'code = ${response.statusCode}\n'
+          'data = ${json.encode(response.data)}');
     }, onError: (DioError e) {
-      LogUtil.i("\n================== 错误响应数据 ======================");
-      LogUtil.i("type = ${e.type}");
-      LogUtil.i("message = ${e.message}");
-      LogUtil.i("stackTrace = ${e.toString()}");
-      LogUtil.i("\n");
+      LogUtil.i('================== 错误响应数据 ======================\n'
+          '${e.toString()}');
     }));
   }
 }

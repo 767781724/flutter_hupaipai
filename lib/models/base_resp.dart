@@ -7,8 +7,8 @@ class BaseResp<T> {
   BaseResp({this.code, this.message, this.data, this.page});
 
   BaseResp.fromJson(Map<String, dynamic> json) {
-    code = json["status"];
-    message = json["msg"]??'';
+    code = json["code"];
+    message = json["message"]??'';
     data = json["data"];
     if (json["page"] != null) {
       page = Page.fromJson(json["page"]);

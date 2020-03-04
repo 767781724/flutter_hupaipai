@@ -71,3 +71,11 @@
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Custom
+.settings/
+.project
+.classpath
+.flutter-plugins-dependencies
+ios/Flutter/Flutter.podspec
+.vscode/

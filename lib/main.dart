@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         Provider.value(value: Socket()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "沪拍牌",
         theme: ThemeData(
             appBarTheme: AppBarTheme(

@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
     super.initState();
     //页面初始化完成 链接socket
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<Socket>(context).connect();
+      Provider.of<Socket>(context, listen: false).connect();
       _socket = Provider.of<Socket>(context, listen: false);
 
       _socket?.on(WebSocketCmd.wsAll, infoListListener);
