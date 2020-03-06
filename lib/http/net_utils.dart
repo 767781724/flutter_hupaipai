@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:hupaipai/http/constans.dart';
 import 'dart:convert';
 
@@ -18,6 +18,8 @@ class Method {
   static const String PATCH = "PATCH";
 }
 
+typedef BaseResp Interceptor(BuildContext context, BaseResp baseResp);
+
 class NetUtils {
   static final NetUtils instance = NetUtils._internal();
   String tokens;
@@ -27,19 +29,28 @@ class NetUtils {
   final bool isDebug = !bool.fromEnvironment("dart.vm.product");
 
   Dio _dio;
+  List<Interceptor> interceptors = [];
+  String tokenMark = "Authorization";
 
   NetUtils._internal() {
     initDio();
   }
 
+  void addInterceptor(Interceptor interceptor) {
+    interceptors.add(interceptor);
+  }
+ 
+  void setTokenMark(String mark) {
+    tokenMark = mark;
+  }
+
   void initDio() {
     // 配置dio实例
     BaseOptions options = BaseOptions(
-      baseUrl: Constants.baseUrl,
-      connectTimeout: 10000,
-      receiveTimeout: 10000,
-      contentType: Headers.jsonContentType
-    );
+        baseUrl: Constants.baseUrl,
+        connectTimeout: 10000,
+        receiveTimeout: 10000,
+        contentType: Headers.jsonContentType);
     _dio = new Dio(options);
     _dio.interceptors.add(InterceptorsWrapper(onError: (DioError e) {
       if (e.response == null) e.response = Response();
@@ -61,11 +72,11 @@ class NetUtils {
     if (options == null) {
       options = Options();
     }
-    if (tokens != null) return options..headers = {"Authorization": tokens};
+    if (tokens != null) return options..headers = {tokenMark: tokens};
     return options;
   }
 
-  Future<BaseResp<T>> request<T>(String path,
+  Future<BaseResp<T>> request<T>(BuildContext context, String path,
       {String method: "POST",
       data,
       Map<String, dynamic> queryParameters,
@@ -78,13 +89,21 @@ class NetUtils {
         cancelToken: cancelToken);
     if (response.data is Map) {
       BaseResp<T> baseResp = BaseResp.fromJson(response.data);
-      LogUtil.i('${baseResp}');
-      if (HttpStatus.ok == baseResp.code) {
-        return baseResp;
+      for (var interceptor in interceptors) {
+        var result = interceptor(context, baseResp);
+        if (result != null) {
+          return result;
+        }
       }
-      throw DioError(response: Response(statusCode: baseResp.code), error: baseResp.message, type: DioErrorType.RESPONSE);
+      throw DioError(
+          response: Response(statusCode: baseResp.code),
+          error: baseResp.message,
+          type: DioErrorType.RESPONSE);
     }
-    throw DioError(response: Response(statusCode: -1), error: "未知错误", type: DioErrorType.RESPONSE);
+    throw DioError(
+        response: Response(statusCode: -1),
+        error: "未知错误",
+        type: DioErrorType.RESPONSE);
   }
 
   printLog() {

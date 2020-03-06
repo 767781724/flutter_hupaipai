@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:hupaipai/http/constans.dart';
-import 'package:hupaipai/http/net_utils.dart';
 import 'package:hupaipai/models/base_socket_resp.dart';
 import 'package:hupaipai/utils/log_util.dart';
 
@@ -12,63 +11,69 @@ class WebSocketCmd {
   WebSocketCmd._();
 
   static final String wsAll = 'all';
-
 }
 
 class Socket {
   WebSocket _webSocket;
   bool _isReconnect;
-  Map<String, List<Function>> _listeners = {};
+  Map<String, List<SocketEventListener>> _listeners = {};
+  Map<String, String> bindCommand;
+
+  void setBindCommand(Map<String, String> bindCommand) {
+    bindCommand = bindCommand;
+  }
 
   void connect() {
     close(true);
     LogUtil.i(Constants.wsUrl);
-    var connect = WebSocket.connect(Constants.wsUrl);
-    connect.then((socket) {
+    WebSocket.connect(Constants.wsUrl).then((socket) {
       LogUtil.i("Socket：连接成功");
-      socket.pingInterval = Duration(seconds: 4);
-      _webSocket = socket;
+      _isReconnect = true;
+      socket.pingInterval = Duration(seconds: 10);
       bindToken();
       socket.listen((data) {
-        LogUtil.i("Socket：data:${data}");
+        LogUtil.i("Socket：data:$data");
         var decode = json.decode(data);
-        if (decode is Map) parseJson(decode);
+        if (decode is Map) {
+          parseJson(decode);
+        } else {
+          LogUtil.i("Socket data is not json");
+        }
       }, onDone: () {
+        LogUtil.i("Socket：onClose");
+        _webSocket = null;
         _reconnect();
-        LogUtil.i("Socket：done_closeCode:${socket.closeCode}");
+      }, onError: () {
+        LogUtil.i("Socket：onError");
       });
+      _webSocket = socket;
     }, onError: (e) {
-      LogUtil.i("Socket：onError:${e}");
-    //  Toast.show(msg: "网络信号不稳定");
       _reconnect();
+      LogUtil.i("Socket connect error: $e");
     });
   }
 
   void bindToken([tokens]) {
-    send({"uuid":"oT9M-5dwh15Cpgudjq1KNQowkbrQ","username":"灿昌信息技术","openid":"oT9M-5dwh15Cpgudjq1KNQowkbrQ","type":"codelogin","action":"codelogin","invite":"0002"});
-    //登录时，由于SharedPreferences保存的慢，NetUtils.instance.tokens可能为空
-    if (tokens != null) {
-      send({"uuid":"oT9M-5dwh15Cpgudjq1KNQowkbrQ","username":"灿昌信息技术","openid":"oT9M-5dwh15Cpgudjq1KNQowkbrQ","type":"codelogin","action":"codelogin","invite":"0002"});
-    } else if (NetUtils.instance.tokens != null) {
-      send({"token": NetUtils.instance.tokens});
+    if (bindCommand != null) {
+      send(bindCommand);
     }
   }
 
   void send(dynamic params) {
     if (_webSocket != null && _webSocket.readyState == WebSocket.open) {
       try {
-        if (params == null) params = {};
-
-        _webSocket.add(json.encode({'data':JsonEncoder().convert(params)}));
+        if (params != null) {
+          _webSocket.add(json.encode({'data': JsonEncoder().convert(params)}));
+        }
       } catch (e) {
-        LogUtil.i('Socket：send_e:${e}');
+        LogUtil.i('Socket：send_e:$e');
       }
     }
   }
 
   void _reconnect() {
     if (_isReconnect) {
-      Timer(Duration(seconds: 3), () {
+      Timer.periodic(Duration(seconds: 3), (_) {
         LogUtil.i("Socket：开始重连");
         connect();
       });
@@ -78,8 +83,9 @@ class Socket {
   void close([bool reconn = false]) {
     _isReconnect = reconn;
     if (_webSocket != null) {
-      LogUtil.i('Socket：close_readyState:${_webSocket.readyState}');
+      LogUtil.i('Socket：close_readyState: ${_webSocket.readyState}');
       _webSocket.close();
+      _webSocket = null;
     }
   }
 

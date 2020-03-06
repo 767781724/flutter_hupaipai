@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hupaipai/http/web_socket.dart';
+import 'package:hupaipai/models/user_model.dart';
+import 'package:hupaipai/provides/application_provide.dart';
 import 'package:hupaipai/provides/ws_provide.dart';
 import 'package:hupaipai/route/app_router.dart';
 import 'package:hupaipai/utils/screen_util.dart';
 import 'package:hupaipai/widgets/my_card.dart';
 import 'package:provider/provider.dart';
 import 'package:hupaipai/pages/home/my_dialog.dart';
+import 'package:common_utils/common_utils.dart' as common_utils;
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,18 +23,28 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
     super.initState();
     //页面初始化完成 链接socket
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<Socket>(context, listen: false).connect();
+      var userModel = Provider.of<Application>(context, listen: false).userModel;
       _socket = Provider.of<Socket>(context, listen: false);
-
+      _socket.setBindCommand(
+        {
+          "uuid": userModel.token,
+          "username": userModel.nickname,
+          "openid": userModel.unionid,
+          "type": "codelogin",
+          "action": "codelogin"
+        }
+      );
+      _socket.connect();
       _socket?.on(WebSocketCmd.wsAll, infoListListener);
     });
 
   }
+
   infoListListener(data){
-    WsBloc ws=Provider.of<WsBloc>(context);
+    WsBloc ws=Provider.of<WsBloc>(context, listen: false);
     ws.pushInfo(data);
   }
-  @override
+
   Widget _tabBox(String path, String name, GestureTapCallback _onTap, [Color colors]) {
     final _style = TextStyle(color: Colors.white, fontSize: setSp(15));
     return InkWell(
@@ -59,6 +72,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
 
   @override
   Widget build(BuildContext context) {
+    var userModel = Provider.of<Application>(context, listen: false).userModel;
+    var now = DateTime.now();
     return Scaffold(
         appBar: AppBar(title: Text('智慧云拍牌')),
         backgroundColor: Colors.white,
@@ -81,7 +96,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                         child: CachedNetworkImage(
                           width: setWidth(48),
                           fit: BoxFit.fitWidth,
-                          imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
+                          imageUrl: userModel.headimgurl,
                           placeholder: (context, url) => Image.asset(
                             'assets/images/img_loading.png',
                             fit: BoxFit.fitWidth,
@@ -94,9 +109,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('刘明星', style: TextStyle(fontSize: setSp(22), fontWeight: FontWeight.bold)),
-                        Text(
-                          '5月27日，星期一',
+                        Text(userModel.nickname, style: TextStyle(fontSize: setSp(22), fontWeight: FontWeight.bold)),
+                        Text('${common_utils.DateUtil.formatDate(now, format: 'MM月dd日')}, ${common_utils.DateUtil.getZHWeekDay(now)}',
                           style: TextStyle(color: Color(0xff999999)),
                         )
                       ],

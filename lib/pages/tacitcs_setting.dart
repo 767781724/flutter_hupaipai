@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:date_format/date_format.dart';
 import 'package:hupaipai/utils/screen_util.dart';
+import 'package:common_utils/common_utils.dart' as common_utils;
 
 class TacitcsSettingPage extends StatefulWidget {
   @override
@@ -55,7 +55,7 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
         locale: LocaleType.zh,
         onConfirm: (date) {
           setState(() {
-            datas[index][key]= formatDate(date, [yyyy,'-',mm,'-',dd, ' ', HH, ':', nn]);
+            datas[index][key]= common_utils.DateUtil.formatDate(date);
           });
         },theme: DatePickerTheme(
           doneStyle: TextStyle(color:  Color(0xFF1CCAD6)),
