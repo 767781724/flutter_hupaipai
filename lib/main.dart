@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider.value(value: UserNotifier()),
         ChangeNotifierProvider.value(value: LoginNotifier()),
-        ChangeNotifierProvider.value(value: WsBloc()),
+        ChangeNotifierProvider.value(value: WsNotifier()),
       ],
       child: OverlaySupport(
           child: MaterialApp(

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:hupaipai/net/constans.dart';
 import 'package:hupaipai/models/base_socket_resp.dart';
@@ -8,7 +9,7 @@ import 'package:web_socket_channel/status.dart' as status;
 
 typedef void SocketEventListener(dynamic data);
 
-class Socket {
+class AppSocket {
   static IOWebSocketChannel _webSocket;
   static bool _isReconnect;
   static List<SocketEventListener> _listeners = [];
@@ -65,7 +66,7 @@ class Socket {
 
   static void _reconnect() {
     if (_isReconnect) {
-      Rx.timer(0, Duration(seconds: 5)).listen((_) {
+      Timer(Duration(milliseconds: 5000), () {
         LogUtil.i("Socket：开始重连");
         connect();
       });

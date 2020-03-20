@@ -25,10 +25,10 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
   void initState() {
     super.initState();
     LogUtil.i('================>_HomePageState initState');
-    Socket.on((data) {
-      WsBloc.pushInfo(data);
+    AppSocket.on((data) {
+      WsNotifier().pushInfo(data);
     });
-    Socket.connect();
+    AppSocket.connect();
   }
 
   Future<TenderModel> loadDefaultTender() async {
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
     if (defaultTenderModel != null &&
         defaultTenderModel.invite_code.isNotEmpty &&
         defaultTenderModel.id != tenderModel.id) {
-      Socket.startBindSocket({
+      AppSocket.startBindSocket({
         "uuid": userModel.unionid,
         "openid": userModel.unionid,
         "username": userModel.nickName,
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
     if (tenderModel.invite_code.isNotEmpty &&
         (defaultTenderModel == null ||
             defaultTenderModel.invite_code != tenderModel.invite_code)) {
-      Socket.startBindSocket({
+      AppSocket.startBindSocket({
         "uuid": userModel.unionid,
         "openid": userModel.unionid,
         "username": userModel.nickName,
@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
       });
     }
     defaultTenderModel = tenderModel;
+    WsNotifier().defaultTenderModel = defaultTenderModel;
     return defaultTenderModel;
   }
 

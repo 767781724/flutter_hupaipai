@@ -4,7 +4,6 @@ import 'package:fluro/fluro.dart';
 import 'package:hupaipai/route/app_router.dart';
 import 'package:hupaipai/utils/screen_util.dart';
 import 'package:hupaipai/store/user_notifier.dart';
-import 'package:rxdart/rxdart.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -19,7 +18,7 @@ class _SplashPageState extends State<SplashPage> with ScreenUtil {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Rx.timer(0, Duration(milliseconds: 1500)).listen((_) {
+      Timer(Duration(milliseconds: 1500), () {
         bool isLogin = UserNotifier.isLogin();
         if (isLogin) {
           AppRouter.navigateTo(context, Routes.homePage,

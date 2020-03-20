@@ -19,16 +19,13 @@ class Method {
 }
 
 class NetUtils {
-  static final NetUtils instance = NetUtils._internal();
   String tokens;
-
-  factory NetUtils() => instance;
-
   final bool isDebug = !bool.fromEnvironment("dart.vm.product");
-
   Dio _dio;
   String tokenMark = "Authorization";
 
+  static final NetUtils instance = NetUtils._internal();
+  factory NetUtils() => instance;
   NetUtils._internal() {
     initDio();
   }
