@@ -1,31 +1,31 @@
 class UserModel {
-  String accountId;
+  int id;
   String unionid;
   String name;
-  String nickname;
+  String nickName;
   String headimgurl;
   String idNumber;
   String phone;
-  String token;
+  String passwd;
 
   UserModel.fromJson(Map<String, dynamic> json)
-      : accountId = json["accountId"],
+      : id = json["id"],
         name = json["name"],
         unionid = json["unionid"],
-        nickname = json["nickname"],
+        nickName = json["nickName"],
         headimgurl = json["headimgurl"],
         idNumber = json["idNumber"],
         phone = json["phone"],
-        token = json["token"];
+        passwd = json["passwd"];
 
   Map<String, dynamic> toJson() => {
-        'accountId': accountId,
+        'id': id,
         'name': name,
         'unionid': unionid,
-        'nickname': nickname,
+        'nickName': nickName,
         'headimgurl': headimgurl,
         'idNumber': idNumber,
         'phone': phone,
-        'token': token,
+        'passwd': passwd,
       };
 }

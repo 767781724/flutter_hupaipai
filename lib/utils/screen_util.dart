@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 mixin ScreenUtil {
   initScreenUtil(BuildContext context,
       {int width = 750, int height = 1334, bool allowFontScaling = false}) {
-    util.ScreenUtil.init(
-        context,
+    util.ScreenUtil.init(context,
         width: width.toDouble(),
         height: height.toDouble(),
         allowFontScaling: allowFontScaling);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:hupaipai/store/user_notifier.dart';
 import 'package:hupaipai/utils/screen_util.dart';
 
 class AccountPage extends StatefulWidget {
@@ -33,6 +34,7 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
 
   @override
   Widget build(BuildContext context) {
+    var userModel = UserNotifier.userModel;
     return Scaffold(
       appBar: AppBar(
         title: Text('编辑资料'),
@@ -46,17 +48,19 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
                 contentPadding: EdgeInsets.all(0),
                 leading: Text(
                   '头像',
-                  style: TextStyle(fontSize: setSp(17), color: Color(0xff333333)),
+                  style:
+                      TextStyle(fontSize: setSp(17), color: Color(0xff333333)),
                 ),
                 title: Align(
                   alignment: Alignment.centerRight,
                   child: SizedBox(
                     width: setWidth(48),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(setWidth(24))),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(setWidth(24))),
                       child: CachedNetworkImage(
                         fit: BoxFit.fitWidth,
-                        imageUrl: "http://cdn.duitang.com/uploads/blog/201404/22/20140422142715_8GtUk.thumb.600_0.jpeg",
+                        imageUrl: userModel.headimgurl,
                         placeholder: (context, url) => Image.asset(
                           'assets/images/img_loading.png',
                           fit: BoxFit.fitWidth,
@@ -73,13 +77,16 @@ class _AccountPageState extends State<AccountPage> with ScreenUtil {
                 ),
               ),
               Divider(),
-              _listBox('姓名', '黄大仙'),
+              _listBox('姓名', userModel.name.isEmpty ? '未设定' : '已设定'),
               Divider(),
-              _listBox('身份证号', '3020810282038200382'),
+              _listBox('身份证',
+                  userModel.idNumber.isEmpty ? '未绑定' : userModel.idNumber),
               Divider(),
-              _listBox('微信号', '已绑定'),
+              _listBox('微信号', userModel.unionid == null ? '未绑定' : '已绑定'),
               Divider(),
-              _listBox('手机号', '181738373333')
+              _listBox('手机号', userModel.phone ?? '未绑定'),
+              Divider(),
+              _listBox('密码', userModel.passwd.isEmpty ? '未设定' : '已设定')
             ],
           ),
         ),

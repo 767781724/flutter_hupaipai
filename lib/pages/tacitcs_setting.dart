@@ -8,11 +8,22 @@ class TacitcsSettingPage extends StatefulWidget {
   _TacitcsSettingPageState createState() => _TacitcsSettingPageState();
 }
 
-class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil {
+class _TacitcsSettingPageState extends State<TacitcsSettingPage>
+    with ScreenUtil {
   TextEditingController _nameController;
   List<Map> datas = [
-    {'stateTime': '11:11:12', 'endTime': '11:11:12', 'type': 0,'price':TextEditingController()},
-    {'stateTime': '11:11:12', 'endTime': '11:11:12', 'type': 0,'price':TextEditingController()}
+    {
+      'stateTime': '11:11:12',
+      'endTime': '11:11:12',
+      'type': 0,
+      'price': TextEditingController()
+    },
+    {
+      'stateTime': '11:11:12',
+      'endTime': '11:11:12',
+      'type': 0,
+      'price': TextEditingController()
+    }
   ];
 
   @override
@@ -31,9 +42,15 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
 
   Widget name() {
     return Container(
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: Color(0xFFEAEAEA)))),
+      decoration: BoxDecoration(
+          border:
+              Border(bottom: BorderSide(width: 1, color: Color(0xFFEAEAEA)))),
       child: Row(children: <Widget>[
-        Text('策略名称', style: TextStyle(fontSize: setSp(18), color: Color(0xff333333), fontWeight: FontWeight.bold)),
+        Text('策略名称',
+            style: TextStyle(
+                fontSize: setSp(18),
+                color: Color(0xff333333),
+                fontWeight: FontWeight.bold)),
         Expanded(
           child: TextField(
             controller: _nameController,
@@ -41,35 +58,47 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
             textAlign: TextAlign.end,
             decoration: InputDecoration(
               hintText: '请输入名称',
-              hintStyle: TextStyle(fontSize: setSp(15), color: Color(0xFFCCCCCC), fontWeight: FontWeight.bold),
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
+              hintStyle: TextStyle(
+                  fontSize: setSp(15),
+                  color: Color(0xFFCCCCCC),
+                  fontWeight: FontWeight.bold),
+              enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white30)),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white30)),
             ),
           ),
         ),
       ]),
     );
   }
-  _showTimePicker(String key,int index){
-    DatePicker.showDateTimePicker(context, showTitleActions: true,currentTime: DateTime.now(),
-        locale: LocaleType.zh,
-        onConfirm: (date) {
-          setState(() {
-            datas[index][key]= common_utils.DateUtil.formatDate(date);
-          });
-        },theme: DatePickerTheme(
-          doneStyle: TextStyle(color:  Color(0xFF1CCAD6)),
+
+  _showTimePicker(String key, int index) {
+    DatePicker.showDateTimePicker(context,
+        showTitleActions: true,
+        currentTime: DateTime.now(),
+        locale: LocaleType.zh, onConfirm: (date) {
+      setState(() {
+        datas[index][key] = common_utils.DateUtil.formatDate(date);
+      });
+    },
+        theme: DatePickerTheme(
+          doneStyle: TextStyle(color: Color(0xFF1CCAD6)),
         ));
   }
-  Widget _cardBox(int index){
+
+  Widget _cardBox(int index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(top: setWidth(15), bottom: setWidth(15)),
           child: Text(
-            index==0?'方式A':'方式B',
-            style: TextStyle(fontSize: setSp(16), color: Color(0xff333333), fontWeight: FontWeight.bold),
+            index == 0 ? '方式A' : '方式B',
+            style: TextStyle(
+                fontSize: setSp(16),
+                color: Color(0xff333333),
+                fontWeight: FontWeight.bold),
           ),
         ),
         ListTile(
@@ -80,12 +109,13 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
           ),
           title: Align(
             alignment: Alignment.centerRight,
-            child:
-            Text(datas[index]['stateTime'], style: TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
+            child: Text(datas[index]['stateTime'],
+                style:
+                    TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
           ),
           trailing: Icon(Icons.keyboard_arrow_down),
           onTap: () {
-            _showTimePicker('stateTime',index);
+            _showTimePicker('stateTime', index);
           },
         ),
         Divider(),
@@ -97,12 +127,13 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
           ),
           title: Align(
             alignment: Alignment.centerRight,
-            child:
-            Text(datas[index]['endTime'], style: TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
+            child: Text(datas[index]['endTime'],
+                style:
+                    TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
           ),
           trailing: Icon(Icons.keyboard_arrow_down),
           onTap: () {
-            _showTimePicker('endTime',index);
+            _showTimePicker('endTime', index);
           },
         ),
         Divider(),
@@ -114,21 +145,28 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
           ),
           title: Align(
             alignment: Alignment.centerRight,
-            child:TextField(
+            child: TextField(
               controller: datas[index]['price'],
               autofocus: false,
               textAlign: TextAlign.end,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: '请输入价格',
-                hintStyle: TextStyle(fontSize: setSp(15), color: Color(0xFFCCCCCC), fontWeight: FontWeight.bold),
-                enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
-                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white30)),
+                hintStyle: TextStyle(
+                    fontSize: setSp(15),
+                    color: Color(0xFFCCCCCC),
+                    fontWeight: FontWeight.bold),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white30)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white30)),
               ),
             ),
           ),
-          onTap: (){
-            setState(() {datas[index]['type']=0;});
+          onTap: () {
+            setState(() {
+              datas[index]['type'] = 0;
+            });
           },
           trailing: CircleAvatar(
             radius: setWidth(10),
@@ -138,7 +176,9 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
               backgroundColor: Colors.white,
               child: CircleAvatar(
                 radius: setWidth(5),
-                backgroundColor: datas[index]['type']==0?Color(0xFF1CCAD6):Colors.white,
+                backgroundColor: datas[index]['type'] == 0
+                    ? Color(0xFF1CCAD6)
+                    : Colors.white,
               ),
             ),
           ),
@@ -152,13 +192,16 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
           ),
           title: Align(
             alignment: Alignment.centerRight,
-            child:
-            Text('8500', style: TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
+            child: Text('8500',
+                style:
+                    TextStyle(fontSize: setSp(15), color: Color(0xff333333))),
           ),
-          onTap: (){
-            setState(() {datas[index]['type']=1;});
+          onTap: () {
+            setState(() {
+              datas[index]['type'] = 1;
+            });
           },
-          trailing:  CircleAvatar(
+          trailing: CircleAvatar(
             radius: setWidth(10),
             backgroundColor: Color(0xFF1CCAD6),
             child: CircleAvatar(
@@ -166,7 +209,9 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
               backgroundColor: Colors.white,
               child: CircleAvatar(
                 radius: setWidth(5),
-                backgroundColor: datas[index]['type']==1?Color(0xFF1CCAD6):Colors.white,
+                backgroundColor: datas[index]['type'] == 1
+                    ? Color(0xFF1CCAD6)
+                    : Colors.white,
               ),
             ),
           ),
@@ -175,6 +220,7 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
       ],
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,7 +254,8 @@ class _TacitcsSettingPageState extends State<TacitcsSettingPage> with ScreenUtil
               colorBrightness: Brightness.dark,
               splashColor: Colors.grey,
               onPressed: () {},
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
               child: Text(
                 '确认',
                 style: TextStyle(fontSize: setSp(15), color: Colors.white),

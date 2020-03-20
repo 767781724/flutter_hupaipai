@@ -1,5 +1,5 @@
 class BaseResp<T> {
-  int code;
+  String code;
   String message;
   T data;
   Page page;
@@ -8,7 +8,7 @@ class BaseResp<T> {
 
   BaseResp.fromJson(Map<String, dynamic> json) {
     code = json["code"];
-    message = json["message"]??'';
+    message = json["message"] ?? '';
     data = json["data"];
     if (json["page"] != null) {
       page = Page.fromJson(json["page"]);

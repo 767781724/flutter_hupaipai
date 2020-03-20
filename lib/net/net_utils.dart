@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hupaipai/http/constans.dart';
+import 'package:hupaipai/net/constans.dart';
 import 'dart:convert';
 
 import 'package:hupaipai/models/base_resp.dart';
@@ -18,8 +18,6 @@ class Method {
   static const String PATCH = "PATCH";
 }
 
-typedef BaseResp Interceptor(BuildContext context, BaseResp baseResp);
-
 class NetUtils {
   static final NetUtils instance = NetUtils._internal();
   String tokens;
@@ -29,19 +27,10 @@ class NetUtils {
   final bool isDebug = !bool.fromEnvironment("dart.vm.product");
 
   Dio _dio;
-  List<Interceptor> interceptors = [];
   String tokenMark = "Authorization";
 
   NetUtils._internal() {
     initDio();
-  }
-
-  void addInterceptor(Interceptor interceptor) {
-    interceptors.add(interceptor);
-  }
- 
-  void setTokenMark(String mark) {
-    tokenMark = mark;
   }
 
   void initDio() {
@@ -89,20 +78,17 @@ class NetUtils {
         cancelToken: cancelToken);
     if (response.data is Map) {
       BaseResp<T> baseResp = BaseResp.fromJson(response.data);
-      for (var interceptor in interceptors) {
-        var result = interceptor(context, baseResp);
-        if (result != null) {
-          return result;
-        }
+      if (baseResp.code == '0') {
+        return baseResp;
       }
       throw DioError(
-          response: Response(statusCode: baseResp.code),
+          response: Response(statusCode: response.statusCode),
           error: baseResp.message,
           type: DioErrorType.RESPONSE);
     }
     throw DioError(
         response: Response(statusCode: -1),
-        error: "未知错误",
+        error: "错误",
         type: DioErrorType.RESPONSE);
   }
 
@@ -111,6 +97,7 @@ class NetUtils {
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
       LogUtil.i('================== 请求数据 ==========================\n'
           'url = ${options.uri.toString()}\n'
+          'method = ${options.method}\n'
           'headers = ${options.headers}\n'
           'params = ${options.data}');
     }, onResponse: (Response response) {

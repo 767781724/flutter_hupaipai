@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:hupaipai/route/app_router.dart';
 import 'package:hupaipai/utils/screen_util.dart';
-import 'package:provider/provider.dart';
-import 'package:hupaipai/provides/application_provide.dart';
-import 'package:hupaipai/models/user_model.dart';
+import 'package:hupaipai/store/user_notifier.dart';
+import 'package:rxdart/rxdart.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -14,19 +13,19 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> with ScreenUtil {
   Timer _timer;
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Timer.periodic(Duration(milliseconds: 1500), (timer) {
-        bool isLogin =
-            Provider.of<Application>(context, listen: false)?.isLogin;
+      Rx.timer(0, Duration(milliseconds: 1500)).listen((_) {
+        bool isLogin = UserNotifier.isLogin();
         if (isLogin) {
-          AppRouter.navigateTo(context, Routes.loginPage,
+          AppRouter.navigateTo(context, Routes.homePage,
               replace: true, transition: TransitionType.fadeIn);
         } else {
-          AppRouter.navigateTo(context, Routes.homePage,
+          AppRouter.navigateTo(context, Routes.wechatLoginPage,
               replace: true, transition: TransitionType.fadeIn);
         }
       });

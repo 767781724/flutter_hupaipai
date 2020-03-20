@@ -9,6 +9,7 @@ class AppRouter {
   AppRouter._();
 
   static Router router;
+
   static Future navigateTo(BuildContext context, String path,
       {bool replace = false,
       bool clearStack = false,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hupaipai/http/web_socket.dart';
-import 'package:hupaipai/provides/ws_provide.dart';
+import 'package:hupaipai/store/login_notifier.dart';
+import 'package:hupaipai/store/ws_notifier.dart';
 import 'package:hupaipai/route/app_router.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:fluwx/fluwx.dart' as fluwx;
-import 'package:hupaipai/provides/application_provide.dart';
+import 'package:hupaipai/store/user_notifier.dart';
 import 'package:hupaipai/utils/log_util.dart';
 
 void main() => runApp(MyApp());
@@ -22,7 +23,6 @@ class _MyAppState extends State<MyApp> {
     AppRouter.router = router;
   }
 
-
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   _initFluwx() async {
-    await fluwx.registerWxApi(appId:"wx435f85136f4a8422",universalLink:'https://hupaipai.hupaigx.com/');
+    await fluwx.registerWxApi(
+        appId: "wx435f85136f4a8422",
+        universalLink: 'https://hupaipai.hupaigx.com/');
     var result = await fluwx.isWeChatInstalled();
     LogUtil.i("wechat is installed: $result");
   }
@@ -39,23 +41,26 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: Application()),
+        ChangeNotifierProvider.value(value: UserNotifier()),
+        ChangeNotifierProvider.value(value: LoginNotifier()),
         ChangeNotifierProvider.value(value: WsBloc()),
-        Provider.value(value: Socket()),
       ],
-      child: MaterialApp(
+      child: OverlaySupport(
+          child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "沪拍牌",
         theme: ThemeData(
+            buttonColor: Color(0xFF1CCAD6),
             appBarTheme: AppBarTheme(
                 color: Colors.white,
                 textTheme: TextTheme(
-                    title: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black)),
-                iconTheme: IconThemeData(size: 28, color: Color(0xff999999)))
-        ),
+                    title: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black)),
+                iconTheme: IconThemeData(size: 28, color: Color(0xff999999)))),
         onGenerateRoute: AppRouter.router.generator,
-      ),
+      )),
     );
   }
 }
-
