@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
         "uuid": userModel.unionid,
         "openid": userModel.unionid,
         "username": userModel.nickName,
-        "invite": '0001', //tenderModel.invite_code,
+        "invite": tenderModel.invite_code,
         "type": "codelogin",
         "action": "codelogin"
       });

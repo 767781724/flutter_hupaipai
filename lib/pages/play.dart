@@ -218,7 +218,7 @@ class _PlayPageState extends State<PlayPage>
                       onSubmitted: (value) {
                         LogUtil.i(value);
                         _sendMessage(value);
-                        value = '';
+                        _controller.text = "";
                       },
                       decoration: InputDecoration(
                         hintStyle: TextStyle(
