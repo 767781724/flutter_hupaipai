@@ -181,45 +181,53 @@ class _MobileLoginPageState extends State<MobileLoginPage> with ScreenUtil {
     loginNotifier = Provider.of<LoginNotifier>(context);
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: setWidth(24)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: setWidth(120),
+        body: SingleChildScrollView(
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+            child: Container(
+              alignment: Alignment.center,
+              height: screenHeightDp,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: setWidth(24)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: setWidth(120),
+                          ),
+                          Text(
+                            "手机密码登录",
+                            style: TextStyle(
+                              fontSize: setSp(24),
+                            ),
+                          ),
+                          SizedBox(
+                            height: setWidth(45),
+                          ),
+                          buildMobileTextField(),
+                          buildPasswdTextField(),
+                          buildLoginButton(),
+                        ],
                       ),
-                      Text(
-                        "手机密码登录",
-                        style: TextStyle(
-                          fontSize: setSp(24),
-                        ),
-                      ),
-                      SizedBox(
-                        height: setWidth(45),
-                      ),
-                      buildMobileTextField(),
-                      buildPasswdTextField(),
-                      buildLoginButton(),
-                    ],
+                    ),
                   ),
-                ),
+                  Container(
+                    child: FlatButton(
+                      child: Text("微信登录"),
+                      onPressed: () {
+                        AppRouter.navigateTo(context, Routes.wechatLoginPage,
+                            replace: true);
+                      },
+                    ),
+                  )
+                ],
               ),
-              Container(
-                child: FlatButton(
-                  child: Text("微信登录"),
-                  onPressed: () {
-                    AppRouter.navigateTo(context, Routes.wechatLoginPage,
-                        replace: true);
-                  },
-                ),
-              )
-            ],
+            ),
           ),
         ));
   }
